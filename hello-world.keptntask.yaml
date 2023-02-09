@@ -1,0 +1,9 @@
+apiVersion: lifecycle.keptn.sh/v1alpha1
+kind: KeptnTaskDefinition
+metadata:
+  name: hello-world
+spec:
+  function:
+    inline:
+      code: |
+        console.log("Hello world...");

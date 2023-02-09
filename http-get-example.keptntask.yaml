@@ -1,0 +1,28 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnTaskDefinition
+metadata:
+  name: use-parameters
+spec:
+  function:
+    parameters:
+      # Multiple maps are not supported
+      map:
+        endpoint: "https://example.com"
+    inline:
+      code: |
+        let parameter_map = Deno.env.get("DATA");
+        let data = JSON.parse(parameter_map);
+
+        url = data.endpoint;
+
+        // Try to GET the endpoint
+        try {
+          let response = await fetch(url);
+        }
+        catch (error) {
+          console.error(`Error caught GETing endpoint: ${error}`);
+          // Exit and signal a failure of this task
+          Deno.exit(1);
+        }
+
+        // Do more logic here...

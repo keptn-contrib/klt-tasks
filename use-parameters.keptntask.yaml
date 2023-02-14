@@ -1,0 +1,17 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnTaskDefinition
+metadata:
+  name: use-parameters
+spec:
+  function:
+    parameters:
+      # Multiple maps are not supported
+      map:
+        foo: "bar"
+    inline:
+      code: |
+        let parameter_map = Deno.env.get("DATA");
+        let data = JSON.parse(parameter_map);
+
+        # "Hello world... Foo is: bar"
+        console.log(`Hello world... Foo is: ${data.foo}`);

@@ -1,0 +1,15 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnTaskDefinition
+metadata:
+  name: gitlab-trigger
+spec:
+  function:
+    httpRef:
+      url: https://raw.githubusercontent.com/keptn-contrib/klt-tasks/main/trigger-gitlab-pipeline/function.ts
+    parameters:
+      map:
+        project: project-id
+        ref: main
+        instance_url: gitlab.com
+    secureParameters:
+      secret: gitlab

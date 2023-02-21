@@ -12,5 +12,6 @@ spec:
         username: thschue
         repository: easy-promotion-example
         job: promotion.yaml
+        ref: main
     secureParameters:
       secret: github

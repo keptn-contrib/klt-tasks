@@ -5,11 +5,11 @@ This task triggers a GitLab Action via the GitLab API.
 You can add user-defined params in the `parameters` section of the task definition and define input variables for the GitHub action in the `input` variable in the function script.
 
 ## Required Parameters
-| Parameter | Description                                                    |
-|-----------|----------------------------------------------------------------|
-| project | The project name                                            |
-| ref | The branch or tag to trigger the action on                     |
-| instance_url | The url of the gitlab instance |
+| Parameter    | Description                                |
+|--------------|--------------------------------------------|
+| project      | The project name                           |
+| ref          | The branch or tag to trigger the action on |
+| instance_url | The url of the gitlab instance             |
 
 ## Required Secure Parameters
 ```shell

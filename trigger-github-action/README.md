@@ -5,12 +5,12 @@ This task triggers a GitHub Action via the GitHub API.
 You can add user-defined params in the `parameters` section of the task definition and define input variables for the GitHub action in the `input` variable in the function script.
 
 ## Required Parameters
-| Parameter | Description                                                    |
-|-----------|----------------------------------------------------------------|
+| Parameter  | Description                                                    |
+|------------|----------------------------------------------------------------|
 | repository | The repository name                                            |
-| username | The username of the repository owner                           |
-| job | The name of the job to trigger (Filename in .github/workflows) |
-| ref | The branch or tag to trigger the action on                     |
+| username   | The username of the repository owner                           |
+| job        | The name of the job to trigger (Filename in .github/workflows) |
+| ref        | The branch or tag to trigger the action on                     |
 
 ## Required Secure Parameters
 ```shell

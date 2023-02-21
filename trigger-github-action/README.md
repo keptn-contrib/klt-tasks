@@ -27,8 +27,8 @@ metadata:
   name: promote-staging
 spec:
   function:
-    http:
-        url: https://raw.githubusercontent.com/keptn-contrib/klt-tasks/main/trigger-github-action/task.yaml
+    httpRef:
+      url: https://raw.githubusercontent.com/keptn-contrib/klt-tasks/main/trigger-github-action/function.ts
     parameters:
       map:
         nextStage: staging

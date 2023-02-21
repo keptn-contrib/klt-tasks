@@ -1,0 +1,16 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnTaskDefinition
+metadata:
+  name: promote-staging
+spec:
+  function:
+    httpRef:
+      url: https://raw.githubusercontent.com/keptn-contrib/klt-tasks/main/trigger-github-action/function.ts
+    parameters:
+      map:
+        nextStage: staging
+        username: thschue
+        repository: easy-promotion-example
+        job: promotion.yaml
+    secureParameters:
+      secret: github

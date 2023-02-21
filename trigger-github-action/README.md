@@ -36,5 +36,5 @@ spec:
         repository: easy-promotion-example
         job: promotion.yaml
     secureParameters:
-      secret: github-promotion
+      secret: github
 ````

@@ -12,6 +12,8 @@ if (sdata_raw != undefined) {
     sdata = JSON.parse(sdata_raw);
 }
 
+console.log(sdata)
+
 if (params_raw != undefined) {
     params = JSON.parse(params_raw);
 }
@@ -20,21 +22,18 @@ if (context != undefined) {
     contextdata = JSON.parse(context);
 }
 
-// Define the URL to the github action
-let url = "https://api.github.com/repos/" + params.username + "/" + params.repository + "/actions/workflows/" + params.job + "/dispatches"
-
-// Define input parameters for the github action - replace this with your own parameters
-let input = `"target_version": "${contextdata.workloadVersion}", "target_env": "${params.nextStage}"`
+// Define the URL to the gitlab pipeline
+let url = "https://" + params.instance_url + "/api/v4/projects/" + params.project + "/trigger/pipeline"
 
 // Define the body of the request
-let body = `{ "ref":"${params.ref}", "inputs": { ${input} }}`
+let body = new FormData
+body.append("ref", params.ref)
+body.append("token", sdata.gitlab_token)
+body.append("variables[GLOBAL_VAR]", "Hello from Keptn!")
 
+console.log(body)
 // Send the request
 let resp = await fetch(url, {
-    headers: {
-        Accept: "application/vnd.github.everest-preview+json",
-        Authorization: "token " + sdata.github_token,
-    },
     body,
     method: "POST"
 })

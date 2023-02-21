@@ -1,21 +1,20 @@
-# Trigger GitHub Action
+# Trigger GitLab Pipeline
 
-This task triggers a GitHub Action via the GitHub API.
+This task triggers a GitLab Action via the GitLab API.
 
 You can add user-defined params in the `parameters` section of the task definition and define input variables for the GitHub action in the `input` variable in the function script.
 
 ## Required Parameters
 | Parameter | Description                                                    |
 |-----------|----------------------------------------------------------------|
-| repository | The repository name                                            |
-| username | The username of the repository owner                           |
-| job | The name of the job to trigger (Filename in .github/workflows) |
+| project | The project name                                            |
 | ref | The branch or tag to trigger the action on                     |
+| instance_url | The url of the gitlab instance |
 
 ## Required Secure Parameters
 ```shell
-export TOKEN=<your github token>
-kubectl create secret generic github --from-literal=SECURE_DATA='{"github_token": "'${TOKEN}'"}'
+export TOKEN=<your gitlab token>
+kubectl create secret generic gitlab --from-literal=SECURE_DATA='{"gitlab_token": "'${TOKEN}'"}'
 ```
 
 ## Usage in KeptnTaskDefinition
@@ -25,18 +24,16 @@ kubectl create secret generic github --from-literal=SECURE_DATA='{"github_token"
 apiVersion: lifecycle.keptn.sh/v1alpha2
 kind: KeptnTaskDefinition
 metadata:
-  name: promote-staging
+  name: gitlab-trigger
 spec:
   function:
     httpRef:
-      url: https://raw.githubusercontent.com/keptn-contrib/klt-tasks/main/trigger-github-action/function.ts
+      url: https://raw.githubusercontent.com/keptn-contrib/klt-tasks/main/trigger-gitlab-pipeline/function.ts
     parameters:
       map:
-        nextStage: staging
-        username: thschue
-        repository: easy-promotion-example
-        job: promotion.yaml
+        project: project-id
         ref: main
+        instance_url: gitlab.com
     secureParameters:
-      secret: github
+      secret: gitlab
 ````
